@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BleuRavenBlenderPythonLibrary", "bbpl\BleuRavenBlenderPythonLibrary.pyproj", "{C12FE318-B671-4996-A36C-FE7044EB35D7}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "bbpl", "bbpl\bbpl.pyproj", "{C12FE318-B671-4996-A36C-FE7044EB35D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
