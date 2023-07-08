@@ -1,3 +1,9 @@
+# BleuRaven Blender Python Library
+**.blend[1-32]*
+.git/
+.vscode/
+.vs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

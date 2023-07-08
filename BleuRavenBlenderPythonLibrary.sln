@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BleuRavenBlenderPythonLibrary", "bbpl\BleuRavenBlenderPythonLibrary.pyproj", "{C12FE318-B671-4996-A36C-FE7044EB35D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C12FE318-B671-4996-A36C-FE7044EB35D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C12FE318-B671-4996-A36C-FE7044EB35D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15C939AB-3987-45A0-ACBD-A1CBBA93B268}
+	EndGlobalSection
+EndGlobal
