@@ -9,6 +9,7 @@
 		"python.linting.pylintEnabled": true,
 		"python.linting.pylintArgs": [
 			"--max-line-length=120",
+			"--disable=E1111"
 		],
 		"python.linting.pycodestyleEnabled": true,
 		"python.linting.pycodestyleArgs": [
@@ -35,6 +36,7 @@
 	},
 	"note": {
 		"fake-bpy-module": "https://github.com/nutti/fake-bpy-module",
-		"fake-bpy-module-command": "py -m pip install fake-bpy-module-latest"
+		"fake-bpy-module-command": "py -m pip install fake-bpy-module-latest",
+		"Blender best_practice": "https://docs.blender.org/api/current/info_best_practice.html"
 	}
 }
