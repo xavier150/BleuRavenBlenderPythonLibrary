@@ -22,33 +22,28 @@
 #  XavierLoux.com
 # ----------------------------------------------
 
-
 import bpy
 
+class BBPL_UI_ExpendSection(bpy.types.PropertyGroup):
 
-def layout_scene_section(layout, prop_name, prop_label):
-    """
-    Add a collapsible section in the Blender UI layout for a scene property.
-    """
-    scene = bpy.context.scene
-    expanded = getattr(scene, prop_name) #Old expanded = eval("scene." + prop_name)
-    tria_icon = "TRIA_DOWN" if expanded else "TRIA_RIGHT"
-    layout.row().prop(scene, prop_name, icon=tria_icon, icon_only=True, text=prop_label, emboss=False)
-    return expanded
+    expend: bpy.props.BoolProperty(
+        name="Use",
+        description="Click to expand / collapse",
+        default=False
+    )
+    
+    def getName(self):
+        prop_rna = self.id_data.bl_rna.properties[self.id_properties_ensure().name]
+        return prop_rna.name
+
+    def draw(self, layout: bpy.types.UILayout):
+        tria_icon = "TRIA_DOWN" if self.expend else "TRIA_RIGHT"
+        description = "Click to collapse" if self.expend else "Click to expand"
+        layout.row().prop(self, "expend", icon=tria_icon, icon_only=True, text=self.getName(), emboss=False, toggle=True, expand=True)
+        if self.expend:
+            pass
+
+    def is_expend(self):
+        return self.expend
 
 
-def get_icon_by_group_theme(theme_enum):
-    """
-    Get the icon name based on a group theme enum value.
-    """
-    if theme_enum == "RED":
-        return "COLORSET_01_VEC"
-    elif theme_enum == "BLUE":
-        return "COLORSET_04_VEC"
-    elif theme_enum == "YELLOW":
-        return "COLORSET_09_VEC"
-    elif theme_enum == "PURPLE":
-        return "COLORSET_06_VEC"
-    elif theme_enum == "GREEN":
-        return "COLORSET_03_VEC"
-    return "NONE"

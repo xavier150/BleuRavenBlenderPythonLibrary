@@ -18,7 +18,8 @@
 
 # ----------------------------------------------
 #  BBPL -> BleuRaven Blender Python Library
-#  xavierloux.com
+#  BleuRaven.fr
+#  XavierLoux.com
 # ----------------------------------------------
 
 import bpy
