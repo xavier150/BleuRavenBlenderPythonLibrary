@@ -39,7 +39,8 @@ scene.bfu_nomenclature_properties_expanded.draw(layout)
 if scene.bfu_nomenclature_properties_expanded.is_expend():
     # The data to show when is expend
 ```
-Here the use in my addon [Blender For Unreal Engine](https://github.com/xavier150/Blender-For-UnrealEngine-Addons)
+Here the use in my addon [Blender For Unreal Engine](https://github.com/xavier150/Blender-For-UnrealEngine-Addons)  
+
 ![Layout Extent Sections](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/assets/7216958/7fceb7a9-2c33-47dc-b9d0-6e53229aebf6)
 
 
