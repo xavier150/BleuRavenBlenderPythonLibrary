@@ -16,15 +16,24 @@ from . import bbpl
 bbpl.register()
 ```
 
-2. Create a pointer of BBPL_UI_ExpendSection from bbpl.blender_layout.layout_expend_section
+2. Create a child class of BBPL_UI_ExpendSection from bbpl.blender_layout.layout_expend_section and register the child class
 ```
-from .bbpl.blender_layout.layout_expend_section.props import (
+from .bbpl.blender_layout.layout_expend_section.types import (
         BBPL_UI_ExpendSection,
         )
-bpy.types.Scene.bfu_object_properties_expanded = bpy.props.PointerProperty(type=BBPL_UI_ExpendSection, name="Object Properties")
+
+class MyAddon_UI_ExpendSection(BBPL_UI_ExpendSection):
+    pass
+
+bpy.utils.register_class(BFU_UI_ExpendSection)
 ```
 
-3. Use draw(layout: bpy.types.UILayout) for draw the section button and is_expend( to check is the section is open.
+2. Create a pointer of your child class
+```
+bpy.types.Scene.bfu_object_properties_expanded = bpy.props.PointerProperty(type=MyAddon_UI_ExpendSection, name="Object Properties")
+```
+
+3. Use draw(layout: bpy.types.UILayout) for draw the section button and is_expend() to check if the section is open.
 ```
 scene.bfu_nomenclature_properties_expanded.draw(layout)
 if scene.bfu_nomenclature_properties_expanded.is_expend():
