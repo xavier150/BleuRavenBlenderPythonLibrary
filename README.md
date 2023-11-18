@@ -4,6 +4,10 @@ BBPL -> BleuRaven Blender Python Library
 
 You free to use it, you can also credit me or support my works.
 
+Discord:
+If you need help or you want see my sides project you can join the discord!
+-> https://discord.gg/XuYeGCFtxa
+
 
 # Blender Layout
 ## Layout Extent Sections
@@ -139,6 +143,89 @@ class MyAddon_UI_TemplateItemDraw(BBPL_UI_TemplateItemDraw): # Your Draw Item cl
    - Use get_template_collection() for get the list collection
    - Use get_active_index() for get the active index
    - Use get_active_item() for get the active item
+
+
+# Rig Backward Compatibility
+1. Import and register bbpl.
+```
+from . import bbpl
+bbpl.register()
+```
+
+2. Create a new class RigActionUpdater.
+```
+my_rig_updater = bbpl.backward_compatibility.RigActionUpdater()
+```
+bbpl.backward_compatibility.RigActionUpdater.update_action_curve_data_path()  
+Update the data paths of FCurves in a given action by replacing old data paths with a new one.
+
+bbpl.backward_compatibility.RigActionUpdater.remove_action_curve_by_data_path()  
+Remove FCurves from a given action based on specified data paths.  
+
+bbpl.backward_compatibility.RigActionUpdater.edit_action_curve()  
+Edit FCurves in a given action based on specified data paths using a custom callback function.  
+
+bbpl.backward_compatibility.RigActionUpdater.print_update_log()  
+Print a log of the number of FCurves updated and removed.
+
+3 You can now use this function for update tour actions. Here an example
+```
+def Invert_old_rig_neck_callback(action, fcurve, data_path):
+    if fcurve.array_index == 0: #X
+        for keyframe_point in fcurve.keyframe_points:
+            keyframe_point.co.y *= -1
+            keyframe_point.handle_left.y *= -1
+            keyframe_point.handle_right.y *= -1
+            #keyframe_point.co.x = 10
+    
+
+def update_rig_backward_compatibility():
+
+    print("Start update_rig_backward_compatibility")
+
+    scene = bpy.context.scene
+
+
+    my_rig_updater = bbpl.backward_compatibility.RigActionUpdater()
+    for action in bpy.data.actions:
+
+        ## Follow controllers rename
+        my_rig_updater.update_action_curve_data_path(action, ['"]["Follow_c_Head"]'], '"]["Follow_Head"]', True)
+        my_rig_updater.update_action_curve_data_path(action, ['"]["Follow_c_Skull_02"]'], '"]["Follow_Skull_02"]', True)
+        my_rig_updater.update_action_curve_data_path(action, ['"]["Follow_c_Tongue_01"]'], '"]["Follow_Tongue_01"]', True)
+
+        ## Game data controllers rename
+        my_rig_updater.update_action_curve_data_path(action, ['pose.bones["c_BodyForward"]', 'pose.bones["BodyForward"]'], 'pose.bones["c_BaseBodyAim"]', True)
+        my_rig_updater.update_action_curve_data_path(action, ['pose.bones["FootPrint_L"]'], 'pose.bones["c_FootPrint_L"]', True)
+
+        ## Old deprecated controllers
+        my_rig_updater.remove_action_curve_by_data_path(action, ['pose.bones["c_Hat"]', 'pose.bones["Hat"]'])
+        my_rig_updater.remove_action_curve_by_data_path(action, ['pose.bones["c_Glasses"]', 'pose.bones["Glasses"]'])
+
+        ## Hidden Rig Points that should not be animate
+        my_rig_updater.remove_action_curve_by_data_path(action, ['pose.bones["rp_c_Eye', 'pose.bones["rp_Eye'])
+        my_rig_updater.remove_action_curve_by_data_path(action, ['pose.bones["rp_Interp_'])
+
+        my_rig_updater.edit_action_curve(action, ['pose.bones["c_Neck"].rotation_euler'], Invert_old_rig_neck_callback)
+    
+    print("End update_rig_backward_compatibility")
+    my_rig_updater.print_update_log()
+
+update_rig_backward_compatibility()
+```
+![image](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/assets/7216958/98213b7e-2f1d-4a07-b461-65d02af45737)
+
+
+# Addon Backward Compatibility
+1. Import and register bbpl.
+```
+from . import bbpl
+bbpl.register()
+```
+2.In progress...
+
+
+
 
 
 # Other
