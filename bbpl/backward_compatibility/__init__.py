@@ -63,7 +63,20 @@ class RigActionUpdater:
         self.remove_fcurve = 0
         self.print_log = False
 
-    def update_action_curve_data_path(self, action, old_data_paths, new_data_path, remove_if_already_exists=False, callback=None):
+    def update_action_curve_data_path(self, action, old_data_paths, new_data_path, remove_if_already_exists=False):
+        """
+        Update the data paths of FCurves in a given action by replacing old data paths with a new one.
+
+        Args:
+            action (bpy.types.Action): The Blender action containing FCurves to be updated.
+            old_data_paths (list of str): A list of old data paths to search for and replace.
+            new_data_path (str): The new data path to replace the old ones with.
+            remove_if_already_exists (bool, optional): If True, remove FCurves if the new data path already exists in them.
+                Default is False.
+
+        Returns:
+            None
+        """
         cache_action_fcurves = []
         cache_data_paths = []
         for fcurve in action.fcurves:
@@ -95,7 +108,17 @@ class RigActionUpdater:
                             if self.print_log:
                                 print(f'"{current_target}" can not be updated to "{new_target}" in {action.name} action. (Alredy exist!)')
 
-    def remove_action_curve_by_data_path(self, action, data_paths, callback=None):
+    def remove_action_curve_by_data_path(self, action, data_paths):
+        """
+        Remove FCurves from a given action based on specified data paths.
+
+        Args:
+            action (bpy.types.Action): The Blender action containing FCurves to be checked and removed.
+            data_paths (list of str): A list of data paths to identify FCurves for removal.
+
+        Returns:
+            None
+        """
         cache_action_fcurves = []
         cache_data_paths = []
         for fcurve in action.fcurves:
@@ -116,6 +139,20 @@ class RigActionUpdater:
                     break #FCurve removed so no neew to test the other old_var_names
 
     def edit_action_curve(self, action, data_paths, callback=None):
+        """
+        Edit FCurves in a given action based on specified data paths using a custom callback function.
+
+        Args:
+            action (bpy.types.Action): The Blender action containing FCurves to be edited.
+            data_paths (list of str): A list of data paths to identify FCurves for editing.
+            callback (function, optional): A custom callback function that will be called for each matching FCurve.
+                The callback function should accept three parameters: `action` (the action containing the FCurve),
+                `fcurve` (the FCurve to be edited), and `data_path` (the matching data path). If callback is None,
+                no editing is performed.
+
+        Returns:
+            None
+        """
         cache_action_fcurves = []
         cache_data_paths = []
         for fcurve in action.fcurves:
@@ -133,11 +170,16 @@ class RigActionUpdater:
                     if callback:
                         callback(action, action_fcurve, data_path)
 
-                    else:
-                        pass
-                        # TO DO
-
 
     def print_update_log(self):
+        """
+        Print a log of the number of FCurves updated and removed.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
         print(f'{self.update_fcurve} fcurve data_path have been updated.')
         print(f'{self.remove_fcurve} fcurve data_path have been removed.')
