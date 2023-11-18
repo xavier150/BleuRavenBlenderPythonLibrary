@@ -61,51 +61,82 @@ class RigActionUpdater:
     def __init__(self):
         self.update_fcurve = 0
         self.remove_fcurve = 0
+        self.print_log = False
 
-    def update_action_whole_variable_names(self, action, old_var_names, new_var_name, callback=None):
+    def update_action_curve_data_path(self, action, old_data_paths, new_data_path, remove_if_already_exists=False, callback=None):
+        cache_action_fcurves = []
+        cache_data_paths = []
         for fcurve in action.fcurves:
-            for old_var_name in old_var_names:
-                current_target = fcurve.data_path
-                if fcurve.data_path == old_var_name:
-                    fcurve.data_path = new_var_name
-                    print(f'"{current_target}" updated to "{new_var_name}" in {action.name} action.')
-                    self.update_fcurve += 1
-
-    def update_action_variable_names(self, action, old_var_names, new_var_name, remove_if_already_exists=False, callback=None):
-        action_fcurves = []
-        data_paths = []
-        for fcurve in action.fcurves:
-            action_fcurves.append(fcurve)
-            data_paths.append(fcurve.data_path)
+            cache_action_fcurves.append(fcurve)
+            cache_data_paths.append(fcurve.data_path)
             
 
-        for action_fcurve in action_fcurves:
-            for old_var_name in old_var_names:
+        for action_fcurve in cache_action_fcurves:
+            for old_data_path in old_data_paths:
                 current_target = action_fcurve.data_path
-                if old_var_name in current_target:
-                    new_target = current_target.replace(old_var_name, new_var_name)
-                    if new_target not in data_paths:
+                if old_data_path in current_target:
+
+                    # ---
+
+                    new_target = current_target.replace(old_data_path, new_data_path)
+                    if new_target not in old_data_path:
                         action_fcurve.data_path = new_target
-                        print(f'"{current_target}" updated to "{new_target}" in {action.name} action.')
+                        if self.print_log:
+                            print(f'"{current_target}" updated to "{new_target}" in {action.name} action.')
                         self.update_fcurve += 1
                     else:
                         if remove_if_already_exists:
                             action.fcurves.remove(action_fcurve)
-                            print(f'"{current_target}" removed in {action.name} action.')
+                            if self.print_log:
+                                print(f'"{current_target}" can not be updated to "{new_target}" in {action.name} action. (Alredy exist!) It was removed in {action.name} action.')
                             self.remove_fcurve += 1
                             break #FCurve removed so no neew to test the other old_var_names
                         else:
-                            print(f'"{current_target}" can not be updated to "{new_target}" in {action.name} action. (Alredy exist!)')
+                            if self.print_log:
+                                print(f'"{current_target}" can not be updated to "{new_target}" in {action.name} action. (Alredy exist!)')
 
-    def remove_action_curve_by_name(self, action, old_var_names, callback=None):
+    def remove_action_curve_by_data_path(self, action, data_paths, callback=None):
+        cache_action_fcurves = []
+        cache_data_paths = []
         for fcurve in action.fcurves:
-            for old_var_name in old_var_names:
-                current_target = fcurve.data_path
-                if old_var_name in current_target:
-                    action.fcurves.remove(fcurve)
-                    print(f'"{current_target}" removed in {action.name} action.')
+            cache_action_fcurves.append(fcurve)
+            cache_data_paths.append(fcurve.data_path)
+
+        for action_fcurve in cache_action_fcurves:
+            for data_path in data_paths:
+                current_target = action_fcurve.data_path
+                if data_path in current_target:
+
+                    # ---
+
+                    action.fcurves.remove(action_fcurve)
+                    if self.print_log:
+                        print(f'"{current_target}" removed in {action.name} action.')
                     self.remove_fcurve += 1
                     break #FCurve removed so no neew to test the other old_var_names
+
+    def edit_action_curve(self, action, data_paths, callback=None):
+        cache_action_fcurves = []
+        cache_data_paths = []
+        for fcurve in action.fcurves:
+            cache_action_fcurves.append(fcurve)
+            cache_data_paths.append(fcurve.data_path)
+
+
+        for action_fcurve in cache_action_fcurves:
+            for data_path in data_paths:
+                current_target = action_fcurve.data_path
+                if data_path in current_target:
+
+                    # ---
+
+                    if callback:
+                        callback(action, action_fcurve, data_path)
+
+                    else:
+                        pass
+                        # TO DO
+
 
     def print_update_log(self):
         print(f'{self.update_fcurve} fcurve data_path have been updated.')
