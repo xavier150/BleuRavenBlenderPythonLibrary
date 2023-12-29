@@ -59,7 +59,7 @@ bbpl.register()
         - BBPL_UI_TemplateItem manage the item and content.  
         - BBPL_UI_TemplateItemDraw manage how the item should draw.  
 ```
-from .bbpl.blender_layout.layout_expend_section.types import (
+from .bbpl.blender_layout.layout_template_list.types import (
         BBPL_UI_TemplateItem,
         BBPL_UI_TemplateItemDraw,
         BBPL_UI_TemplateList,
