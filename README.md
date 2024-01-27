@@ -144,7 +144,7 @@ class MyAddon_UI_TemplateItemDraw(BBPL_UI_TemplateItemDraw): # Your Draw Item cl
    - Use get_active_index() for get the active index
    - Use get_active_item() for get the active item
 
-  BBPL_UI_TemplateList can be used with the native array fonctions like len() or the for loop.
+  BBPL_UI_TemplateList can be used with the native list fonctions like len(), iter() or the for loop.
    
 
 
