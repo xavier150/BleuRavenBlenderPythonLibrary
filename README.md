@@ -67,13 +67,13 @@ from .bbpl.blender_layout.layout_template_list.types import (
 
 
 
-class MyAddon_UI_TemplateItem(BBPL_UI_TemplateItem): # Your Item class
+class MyAddon_UI_TemplateItem(BBPL_UI_TemplateItem): # Item class (bpy.types.PropertyGroup)
     pass
 
-class MyAddon_UI_TemplateItemDraw(BBPL_UI_TemplateItemDraw): # Your Draw Item class
+class MyAddon_UI_TemplateItemDraw(BBPL_UI_TemplateItemDraw): # Draw Item class (bpy.types.UIList)
     pass
 
-class MyAddon_UI_TemplateList(BBPL_UI_TemplateList): # Your Template List class
+class MyAddon_UI_TemplateList(BBPL_UI_TemplateList): # Template List class
     pass
 ```
 
