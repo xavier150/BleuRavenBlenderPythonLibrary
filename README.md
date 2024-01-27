@@ -57,7 +57,8 @@ bbpl.register()
 2. Create a child class of BBPL_UI_TemplateItem, BBPL_UI_TemplateItemDraw and BBPL_UI_TemplateList from bbpl.blender_layout.layout_template_list.  
         - BBPL_UI_TemplateList manage the list and actions.  
         - BBPL_UI_TemplateItem manage the item and content.  
-        - BBPL_UI_TemplateItemDraw manage how the item should draw.  
+        - BBPL_UI_TemplateItemDraw manage how the item should draw.
+In your TemplateList class you need set your Item Class and Draw Item Class.
 ```
 from .bbpl.blender_layout.layout_template_list.types import (
         BBPL_UI_TemplateItem,
@@ -74,7 +75,8 @@ class MyAddon_UI_TemplateItemDraw(BBPL_UI_TemplateItemDraw): # Draw Item class (
     pass
 
 class MyAddon_UI_TemplateList(BBPL_UI_TemplateList): # Template List class
-    pass
+    template_collection: bpy.props.CollectionProperty(type=MyAddon_UI_TemplateItem)
+    template_collection_uilist_class: bpy.props.StringProperty(default = "MyAddon_UI_TemplateItemDraw")
 ```
 
 3. register the childs class and create a pointer of your TemplateList class.
@@ -86,11 +88,9 @@ bpy.utils.register_class(MyAddon_UI_TemplateList) # Need be register after Item 
 bpy.types.Scene.my_properties_list = bpy.props.PointerProperty(type=MyAddon_UI_TemplateList)
 ```
 
-4. Edit your TemplateList class for set your Item Class and Draw Item Class
+You can now use draw(layout: bpy.types.UILayout) on your list for draw in the UI  
 ```
-class MyAddon_UI_TemplateList(BBPL_UI_TemplateList):
-    template_collection: bpy.props.CollectionProperty(type=MyAddon_UI_TemplateItem)
-    template_collection_uilist_class: bpy.props.StringProperty(default = "MyAddon_UI_TemplateItemDraw")
+my_properties_list.draw(layout)
 ```
 
 Here the result:  
