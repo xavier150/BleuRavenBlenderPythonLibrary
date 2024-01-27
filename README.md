@@ -139,12 +139,14 @@ class MyAddon_UI_TemplateItemDraw(BBPL_UI_TemplateItemDraw): # Your Draw Item cl
 ```
 
 7. API
-   - Use draw(layout: bpy.types.UILayout) for draw the template.
-   - Use get_template_collection() for get the list collection. Now you can also use len()
-   - Use get_active_index() for get the active index
-   - Use get_active_item() for get the active item
+   - draw(layout: bpy.types.UILayout) for draw the template.
+   - get_template_collection() for get the list collection. Now you can also use len()
+   - get_active_index() Get the active index
+   - get_active_item() Get the active item
+   - clear() 
 
-  BBPL_UI_TemplateList can be used with the native list fonctions like len(), iter() or the for loop.
+  BBPL_UI_TemplateList can be used with the native list fonctions like len(), iter()...
+
    
 
 
