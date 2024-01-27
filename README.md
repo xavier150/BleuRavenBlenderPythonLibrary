@@ -83,7 +83,7 @@ bpy.utils.register_class(MyAddon_UI_TemplateItem)
 bpy.utils.register_class(MyAddon_UI_TemplateItemDraw)
 bpy.utils.register_class(MyAddon_UI_TemplateList) # Need be register after Item and Draw Item.
 
-bpy.types.Scene.bfu_object_properties_expanded = bpy.props.PointerProperty(type=MyAddon_UI_TemplateList)
+bpy.types.Scene.my_properties_list = bpy.props.PointerProperty(type=MyAddon_UI_TemplateList)
 ```
 
 4. Edit your TemplateList class for set your Item Class and Draw Item Class
@@ -140,9 +140,11 @@ class MyAddon_UI_TemplateItemDraw(BBPL_UI_TemplateItemDraw): # Your Draw Item cl
 
 7. API
    - Use draw(layout: bpy.types.UILayout) for draw the template.
-   - Use get_template_collection() for get the list collection
+   - Use get_template_collection() for get the list collection. Now you can also use len()
    - Use get_active_index() for get the active index
    - Use get_active_item() for get the active item
+  
+   
 
 
 # Rig Backward Compatibility
