@@ -13,10 +13,10 @@ If you need help or you want see my sides project you can join the discord!
 ### UI
 - [Layout Extent Sections](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Layout-Extent-Sections)
 - [Layout Template List](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Layout-Template-List)
-- [Layout Documentation Button](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Layout-Documentation-Button) //TODO
+- [Layout Documentation Button](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Layout-Documentation-Button)
 ### Rig/Skin
-- [Rig Backward Compatibility](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Rig-Backward-Compatibility) //TODO
+- [Rig Backward Compatibility](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Rig-Backward-Compatibility)
 ### Addon managemet
-- [Property Backward Compatibility](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Property-Backward-Compatibility) //TODO
+- [Property Backward Compatibility](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Property-Backward-Compatibility)
 ### Additional Information
-- [Support](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Support) <3 //TODO
+- [Support](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Support) <3
