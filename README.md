@@ -11,7 +11,7 @@ If you need help or you want see my sides project you can join the discord!
 # Wiki
 - [Home](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki)
 ### UI
-- [Layout Extent Sections](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Layout-Extent-Sections)
+- [Layout Accordion](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Layout-Accordion)
 - [Layout Template List](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Layout-Template-List)
 - [Layout Documentation Button](https://github.com/xavier150/BleuRavenBlenderPythonLibrary/wiki/Layout-Documentation-Button)
 ### Rig/Skin
