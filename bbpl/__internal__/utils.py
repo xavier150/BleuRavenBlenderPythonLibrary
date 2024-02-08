@@ -23,37 +23,11 @@
 # ----------------------------------------------
 
 import bpy
-import importlib
-from . import layout_accordion
-from . import layout_template_list
-from . import layout_doc_button
 
-if "layout_accordion" in locals():
-    importlib.reload(layout_accordion)
-if "layout_template_list" in locals():
-    importlib.reload(layout_template_list)
-if "layout_doc_button" in locals():
-    importlib.reload(layout_doc_button)
+def get_package_name():
+    package_name = __package__
+    package_name = package_name.split(".")[0]
+    package_name = package_name.lower().replace("-", "")
+    return package_name
 
 
-
-classes = (
-)
-
-
-
-def register():
-    for cls in classes:
-        bpy.utils.register_class(cls)
-
-    layout_accordion.register()
-    layout_template_list.register()
-    layout_doc_button.register()
-
-def unregister():
-    for cls in reversed(classes):
-        bpy.utils.unregister_class(cls)
-
-    layout_doc_button.unregister()
-    layout_template_list.unregister()
-    layout_accordion.unregister()

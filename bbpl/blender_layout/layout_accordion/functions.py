@@ -23,37 +23,7 @@
 # ----------------------------------------------
 
 import bpy
-import importlib
-from . import layout_accordion
-from . import layout_template_list
-from . import layout_doc_button
+from . import types
 
-if "layout_accordion" in locals():
-    importlib.reload(layout_accordion)
-if "layout_template_list" in locals():
-    importlib.reload(layout_template_list)
-if "layout_doc_button" in locals():
-    importlib.reload(layout_doc_button)
-
-
-
-classes = (
-)
-
-
-
-def register():
-    for cls in classes:
-        bpy.utils.register_class(cls)
-
-    layout_accordion.register()
-    layout_template_list.register()
-    layout_doc_button.register()
-
-def unregister():
-    for cls in reversed(classes):
-        bpy.utils.unregister_class(cls)
-
-    layout_doc_button.unregister()
-    layout_template_list.unregister()
-    layout_accordion.unregister()
+def add_ui_accordion(name: str=""):
+    return bpy.props.PointerProperty(type=types.get_layout_accordion_class(), name=name)
